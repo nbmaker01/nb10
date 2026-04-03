@@ -1,2 +1,102 @@
-/
+/<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WebXR A-Frame GLB Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- A-Frame 라이브러리 불러오기 -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  </head>
+
+  <body>
+    <!-- A-Frame 씬 시작 -->
+    <a-scene>
+
+      <!-- =========================
+           자산(Assets) 미리 로드
+           ========================= -->
+      <a-assets>
+        <!-- GLB 모델 불러오기 -->
+        <a-asset-item id="myModel" src="model.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- =========================
+           카메라 + 이동 설정
+           ========================= -->
+      <!--
+        wasd-controls: 키보드 이동 (W,A,S,D)
+        look-controls: 마우스로 시점 이동
+      -->
+      <a-entity 
+        camera 
+        position="0 1.6 3"
+        wasd-controls 
+        look-controls>
+      </a-entity>
+
+      <!-- =========================
+           VR 컨트롤러 (양손)
+           ========================= -->
+      <!-- 왼손 컨트롤러 -->
+      <a-entity 
+        laser-controls="hand: left">
+      </a-entity>
+
+      <!-- 오른손 컨트롤러 -->
+      <a-entity 
+        laser-controls="hand: right">
+      </a-entity>
+
+      <!-- =========================
+           조명 설정
+           ========================= -->
+
+      <!-- 전체 밝기 (부드러운 빛) -->
+      <a-light 
+        type="ambient" 
+        color="#ffffff" 
+        intensity="0.6">
+      </a-light>
+
+      <!-- 방향성 조명 (태양 느낌) -->
+      <a-light 
+        type="directional" 
+        position="2 4 2" 
+        intensity="0.8">
+      </a-light>
+
+      <!-- =========================
+           바닥 (Ground)
+           ========================= -->
+      <a-plane 
+        rotation="-90 0 0" 
+        width="20" 
+        height="20" 
+        color="#7BC8A4">
+      </a-plane>
+
+      <!-- =========================
+           하늘 (Sky)
+           ========================= -->
+      <a-sky color="#87CEEB"></a-sky>
+
+      <!-- =========================
+           3D 모델 배치
+           ========================= -->
+      <!--
+        position: 앞쪽 중앙 (카메라 기준)
+        scale: 크게 보이도록 확대
+        rotation: 약간 회전
+      -->
+      <a-entity 
+        gltf-model="#myModel"
+        position="0 0 -3"
+        scale="2 2 2"
+        rotation="0 30 0">
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
 /
